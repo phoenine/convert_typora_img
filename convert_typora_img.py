@@ -38,7 +38,7 @@ def find_all_md_file(dest_path):
 
 def revert_pic_method(md_name):
     pattern1 = re.compile(r'<img src="(.*)" alt',re.I)
-    pattern2 = re.compile(r'!\[.*\]\(./(.*)\)',re.I)
+    pattern2 = re.compile(r'!\[.*\]\((.*)\)',re.I)
     lines = []
     with open(md_name, 'r', encoding='utf-8') as f:         
         for line in f.readlines():
@@ -61,8 +61,7 @@ def revert_pic_method(md_name):
 if __name__ == '__main__':
     typora_path = os.path.abspath(r'/Users/phoenine/Documents/MD')
     blog_path = os.path.abspath(r'/Users/phoenine/Documents/MyBlog/hexo/source/_posts')
-    test_path = os.path.abspath(r'/Users/phoenine/Documents/test')
-    copy_source_file(typora_path, test_path)
-    mapping_files_dct = find_all_md_file(test_path)
+    copy_source_file(typora_path, blog_path)
+    mapping_files_dct = find_all_md_file(blog_path)
     for mapping_file in mapping_files_dct:
         revert_pic_method(mapping_file)
